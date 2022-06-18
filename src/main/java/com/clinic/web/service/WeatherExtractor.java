@@ -29,19 +29,24 @@ public class WeatherExtractor {
 		WeatherVo currentWeather = new WeatherVo();
 		
 		try{
-			Document document = Jsoup.connect(url).get();
+			Document document = Jsoup.connect(url).header("Accept-Language", "zh_HK").header("Accept-Encoding", "UTF-8").get();
 			//Document document = Jsoup.parse(new URL(url).openStream(), "UTF-8", url);
 			
-			if(document != null){				
-				Element content = document.select("p").get(1).select("span").first();
-				Element content2 = document.select("pre").first();
+			if(document != null){
 				
+				//Element content = document.select("p").get(1).select("span").first();
+				Element content = document.select("span[style]").first();
+				
+				if(content==null) {
+					throw new ClinicRuntimeException("Cannot locate current time!");
+				}
 				String dateStr = content.text().replace("香 港 天 文 台 於 ", "");//香 港 天 文 台 於 2019 年 12 月 04 日 12 時 02 分 發 出 之 天 氣 報 告
 				dateStr = dateStr.substring(dateStr.indexOf(" 年 ")+3);
 				dateStr = dateStr.replace(" 發 出 之 天 氣 報 告", "");
 				dateStr = dateStr.replaceAll(" ", "");
-				
 				currentWeather.setDate(dateStr);
+				
+				Element content2 = document.select("pre").first();				
 				
 				BufferedReader reader = new BufferedReader(new StringReader(content2.text()));
 				String line = reader.readLine();
@@ -86,8 +91,8 @@ public class WeatherExtractor {
 		String url = SOURCE;
 		
 		try{
-			//Document document = Jsoup.connect(url).get();
-			Document document = Jsoup.parse(new URL(url).openStream(), "UTF-8", url);
+			Document document = Jsoup.connect(url).header("Accept-Language", "zh_HK").header("Accept-Encoding", "UTF-8").get();
+			//Document document = Jsoup.parse(new URL(url).openStream(), "UTF-8", url);
 			
 			if(document != null){
 				List<WeatherVo> weatherList = new ArrayList<WeatherVo>();
