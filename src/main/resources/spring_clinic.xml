@@ -15,7 +15,7 @@
 
 	<!-- Hibernate 4 Annotation SessionFactory Bean definition -->
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-		<property name="dataSource" ref="cloudDataSource" />
+		<property name="dataSource" ref="cloudDataSource" /> <!-- Using cloud datasource -->
 		<property name="annotatedClasses">
 			<list>
 				<value>com.clinic.web.entity.Customers</value>
@@ -44,34 +44,20 @@
 			</props>
 		</property>
 	</bean>
-
-	<bean id="basicDataSource" class="org.apache.commons.dbcp.BasicDataSource"
-		destroy-method="close" p:driverClassName-ref="driverName" p:url-ref="defaultJdbcURL"
-		p:username-ref="defaultUserName" p:password-ref="defaultPassword" />
-		
-	<bean id="defaultUserName" class="java.lang.String">
-		<constructor-arg type="String" value="jianzhi" />
-	</bean>
 	
-	<bean id="defaultPassword" class="java.lang.String">
-		<constructor-arg type="String" value="clinicweb" />
-	</bean>
-	
-	<bean id="defaultJdbcURL" class="java.lang.String">
-		<constructor-arg type="String" value="jdbc:postgresql://localhost:5432/Clinic2" />
-	</bean>
-	
-	<bean id="driverName" class="java.lang.String">
-		<constructor-arg type="String" value="org.postgresql.Driver" />
-	</bean>
-	
+	<!-- cloud data source -->
 	<beans:bean id="cloudDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<beans:property name="driverClassName" ref="driverName" />
 		<beans:property name="url" ref="jdbcURL" />
 		<beans:property name="username" ref="userName" />
 		<beans:property name="password" ref="password" />
-	</beans:bean>		
+	</beans:bean>
+	
+	<bean id="driverName" class="java.lang.String">
+		<constructor-arg type="String" value="org.postgresql.Driver" />
+	</bean>	
 
+	<!-- local data source with pool -->
 	<bean id="localDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
 		<property name="driverClass" ref="driverName" />
@@ -90,7 +76,7 @@
 			<bean class="com.clinic.web.util.DatabaseUtil" />
 		</property>
 		<property name="targetMethod">
-			<value>getJdbcUrl2</value>
+			<value>getJdbcUrl</value>
 		</property>
 	</bean>
 
@@ -100,7 +86,7 @@
 			<bean class="com.clinic.web.util.DatabaseUtil" />
 		</property>
 		<property name="targetMethod">
-			<value>getUserName2</value>
+			<value>getUserName</value>
 		</property>
 	</bean>
 
@@ -110,10 +96,11 @@
 			<bean class="com.clinic.web.util.DatabaseUtil" />
 		</property>
 		<property name="targetMethod">
-			<value>getPassword2</value>
+			<value>getPassword</value>
 		</property>
 	</bean>
-
+	
+	<!-- define entity beans -->
 	<bean id="customersDao" class="com.clinic.web.dao.CustomersDaoImpl"
 		p:sessionFactory-ref="sessionFactory" />
 
