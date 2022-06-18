@@ -1,0 +1,10 @@
+--Drop Database Clinic2
+
+--Backup
+“C:\program files\postgreSQL\9.4\bin\pg_dump.exe" -encoding utf8 -U postgres Clinic > C:\backup\clinic20190125
+
+--Create Database Clinic2
+--createdb -E utf8 Clinic2
+
+--Restore
+"C:\program files\postgreSQL\9.4\bin\psql.exe" -U postgres --set ON_ERROR_STOP=on Clinic2 < "C:\backup\clinic20190125"

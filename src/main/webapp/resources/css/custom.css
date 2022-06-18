@@ -1,0 +1,438 @@
+span.reportsmall {
+	font-size: 10px;	
+	line-height: 12px;	
+	color: black;
+}
+
+div.reportcontent {
+	font-size: 16px;	
+	line-height: 20px;	
+	color: black;
+}
+
+div.reporttitle {
+	font-size: 16px;
+	line-height: 20px;	
+	color: black;
+	font-weight: bold;
+}
+
+div.backpurple{
+	background-color: #E5CCFF;
+}
+
+div.backpink{
+	background-color: #FFE5CC;
+}
+
+div.backgreen{
+	background-color: #CCFFCC;
+}
+
+table.backlightblue{
+	background-color: #F0F8FF;
+}
+
+table.backgreen{
+	background-color: #CCFFCC;
+}
+
+div.backorange{
+	background-color: #FFE5CC;
+}
+
+input.backpink{
+	background-color: pink;
+}
+
+input.backyellow{
+	background-color: yellow;
+}
+
+input.backgreen{
+	background-color: lightgreen;
+}
+
+input.backorange{
+	background-color: orange;
+}
+
+th.normal{
+	font-size: 14px;
+}
+
+
+.btn-success2{
+	color: #fff;
+	background-color: #00CC00;
+	border-color: #4cae4c;
+}
+
+.btn-purple{
+	color: #fff;
+	background-color: #9933FF;
+	border-color: #CC99FF;
+	
+}
+
+.checkboxfont{
+	font-weight: 700;
+}
+
+/* autocomplete */
+.autocomplete-suggestions { border: 1px solid #999; background: #FFF; overflow: auto; }
+.autocomplete-suggestion { padding: 5px 5px; white-space: nowrap; overflow: hidden; font-size:22px}
+.autocomplete-selected { background: #F0F0F0; }
+.autocomplete-suggestions strong { font-weight: bold; color: #3399FF; }
+
+/* old */
+table.boxtable {
+	font-family: Quattrocento Sans;
+	font-size:11px;
+	color:#333333;
+	border-width: 1px;
+	border-color: #666666;	
+	border-collapse: collapse;
+	border-style: solid;
+}
+table.boxtable th {
+	border-width: 0px;
+	padding: 5px;
+	background-color: #dedede;
+}
+table.boxtable td {
+	border-width: 0px;
+	padding: 5px;
+	background-color: #ffffff;
+}
+
+.formSelect {
+	width: 300px;
+}
+
+.space {
+	width: 50px;
+}
+
+.tabletitle {
+	color: #ffddee;
+	background-color: #007FFF;
+}
+
+.htitle {
+   color: #ffddee;
+   background-color: #007FFF;
+}
+
+mark1 {
+   color: #ff0000;
+   font-weight: bold;
+}
+
+.maptitle {
+	color: #e17009;
+}
+
+.mapdesc {
+	color: #2e6e9e;
+}
+
+.boxcontainer {
+    font-size: 16px;	
+	line-height: 18px;
+	padding: .5em .5em .5em .7em;
+	min-height: 0;
+	position: relative;
+	margin-top: 2px;
+	
+	border: 1px solid #32CD32;
+}
+
+.textdesc {
+	font-size: 16px;
+	line-height: 18px;	
+	min-height: 0;
+	color: black;
+}
+
+.menutitlecontainer {
+    font-size: 14px;	
+	line-height: 15px;
+	padding: .5em .5em .5em .7em;
+	min-height: 0;
+	position: relative;
+	margin-top: 2px;
+	
+	border: 1px solid #79b7e7;
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+}
+
+.menulistcontainer {
+    font-size: 14px;	
+	line-height: 15px;
+	padding: .5em .5em .5em .7em;
+	min-height: 0;
+	position: relative;
+		
+	border: 1px solid #79b7e7;
+	border-top-width: 0px;
+}
+
+.menutitle {
+    font-size: 12px;	
+	line-height: 15px;	
+	font-weight: bold;
+	color: #e17009;
+}
+
+.menusubtitle {
+	font-size: 14px;	
+	line-height: 16px;	
+	color: #1466B8;
+}
+
+.menuitem {
+	font-size: 14px;	
+	line-height: 16px;
+	color:#555;
+	display:inline-block;
+	vertical-align: middle;
+}
+
+.menucheckbox {
+	font-size: 1em;
+	vertical-align: bottom;
+	width: 13px;
+	height: 13px;
+}
+
+.contentsubtitle2 {
+	font-size: 18px;	
+	line-height: 20px;	
+	color: #ff8040;
+}
+
+.contentsubtitle {
+	font-size: 18px;	
+	line-height: 20px;	
+	color: #1466B8;
+}
+
+.contenttitle {
+	font-size: 18px;	
+	line-height: 18px;	
+	color: #9933ff;
+}
+
+.contentitem {
+	font-size: 14px;	
+	line-height: 17px;
+	color:#555;
+	display:inline-block;
+	vertical-align: middle;
+}
+
+.contentitemhighlight {
+	font-size: 14px;	
+	line-height: 17px;
+	color:red;
+	display:inline-block;
+	vertical-align: middle;
+}
+
+.floating-menu {
+	font-family: sans-serif;
+	background: yellowgreen;
+	padding: 5px;;
+	width: 130px;
+	z-index: 100;
+	position: fixed;
+}
+
+.floating-hidden {
+	font-family: sans-serif;
+	padding: 0px;
+	z-index: 100;
+	position: fixed;
+	height: 0px;
+}
+
+/* bootstrap hack: fix content width inside hidden tabs */
+.tab-content > .tab-pane,
+.pill-content > .pill-pane {
+    display: block;     /* undo display:none          */
+    overflow-y: hidden; /* no-overflow                */
+    height: 0;
+}
+.tab-content > .active,
+.pill-content > .active {
+    height: auto;       /* let the content decide it  */
+} /* bootstrap hack end */
+
+/* openlayer features */
+.map2 {
+	height: 75%;
+	width: 100%;
+}
+
+.map3 {
+	height: 60%;
+	width: 100%;
+}
+
+.map4 {
+	height: 48%;
+	width: 100%;
+}
+
+.buffermap {
+	height: 1px;
+	width: 1px;
+}
+
+.map2:-moz-full-screen {
+  height: 100%;
+}
+.map2:-webkit-full-screen {
+  height: 100%;
+}
+.map2:fullscreen {
+  height: 100%;
+}
+
+.rotate-north {
+  top: 65px;
+  left: .5em;
+}
+.ol-touch .rotate-north {
+  top: 80px;
+}
+
+/* Adjust layouts */
+.nav {
+	margin-bottom: 0px;
+}
+.row-fluid [class*="span"] {
+	min-height: 0px;
+}
+.row {
+	margin-left: 2px;
+	margin-right: 0px;
+}
+
+.col-md-10 {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.narrow {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.verticalnarrow {
+	padding-top: 1px;
+	padding-bottom: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+hr.thin {
+	padding-top: 1px;
+	padding-bottom: 0px;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	border-bottom: 1px solid;
+}
+
+hr.thick {
+	padding-top: 1px;
+	padding-bottom: 0px;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	border-bottom: 2px solid;
+}
+
+.vertical30 {
+	height: 30%;
+}
+
+.rightAlign {
+	text-align: right;
+}
+
+.centerAlign {
+	text-align: center;
+}
+
+.noborder {
+	border: 0px;
+	border-top: 0px;
+}
+
+.btn-xs {
+	font-size: 10px;
+}
+
+/* table color */
+.active2 {
+	background-color: #e5e5e5;
+}
+
+.warning2 {
+	background-color: #ece8d3;
+}
+
+.info2{
+	background-color: #e9fdfa;
+}
+
+.success2{
+	background-color: #eff5e8;
+}
+
+.danger2{
+	background-color: #faeeee;
+}
+
+.table thead tr th{
+	padding: 4px;
+}
+.table tbody tr td{
+	padding: 4px;
+}
+
+/* adminpage */
+.select-list {
+    min-width: 300px;
+    width: auto;
+    display: inline;
+}
+
+.big-checkbox {
+	height: 26px; 
+	width:26px;
+}
+
+.date-picker{
+	width:120px;
+}
+
+.input-narrow{
+	width:120px;
+}
+
+th.wide-0{
+	min-width:50px;
+}
+
+th.wide-1{
+	min-width:100px;
+}
+th.wide-2{
+	min-width:200px;
+}
+th.wide-3{
+	min-width:300px;
+}

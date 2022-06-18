@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:cache="http://www.springframework.org/schema/cache"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+     http://www.springframework.org/schema/beans/spring-beans-4.0.xsd  
+     http://www.springframework.org/schema/context 
+     http://www.springframework.org/schema/context/spring-context-4.0.xsd
+     http://www.springframework.org/schema/tx
+     http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+     http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd
+     http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.0.xsd"
+	xmlns:context="http://www.springframework.org/schema/context">
+
+	<!-- Hibernate 4 Annotation SessionFactory Bean definition -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="cloudDataSource" />
+		<property name="annotatedClasses">
+			<list>
+				<value>com.clinic.web.entity.Customers</value>
+				<value>com.clinic.web.entity.Symptoms</value>
+				<value>com.clinic.web.entity.Cases</value>
+				<value>com.clinic.web.entity.CaseMedicine</value>
+				<value>com.clinic.web.entity.CasesView</value>
+				<value>com.clinic.web.entity.Medicine</value>
+				<value>com.clinic.web.entity.PriceList</value>
+				<value>com.clinic.web.entity.PriceCategory</value>
+				<value>com.clinic.web.entity.Units</value>
+				<value>com.clinic.web.entity.CaseRemark</value>
+				<value>com.clinic.web.entity.PriceSystem</value>
+				<value>com.clinic.web.entity.CaseAttachment</value>
+				<value>com.clinic.web.entity.AuditLog</value>
+				<value>com.clinic.web.entity.CaseStatistic</value>
+				<value>com.clinic.web.entity.Users</value>
+			</list>
+		</property>
+
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+				<prop key="hibernate.default_schema">public</prop>
+				<prop key="show_sql">false</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="basicDataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close" p:driverClassName-ref="driverName" p:url-ref="defaultJdbcURL"
+		p:username-ref="defaultUserName" p:password-ref="defaultPassword" />
+		
+	<bean id="defaultUserName" class="java.lang.String">
+		<constructor-arg type="String" value="jianzhi" />
+	</bean>
+	
+	<bean id="defaultPassword" class="java.lang.String">
+		<constructor-arg type="String" value="clinicweb" />
+	</bean>
+	
+	<bean id="defaultJdbcURL" class="java.lang.String">
+		<constructor-arg type="String" value="jdbc:postgresql://localhost:5432/Clinic2" />
+	</bean>
+	
+	<bean id="driverName" class="java.lang.String">
+		<constructor-arg type="String" value="org.postgresql.Driver" />
+	</bean>
+	
+	<beans:bean id="cloudDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<beans:property name="driverClassName" ref="driverName" />
+		<beans:property name="url" ref="jdbcURL" />
+		<beans:property name="username" ref="userName" />
+		<beans:property name="password" ref="password" />
+	</beans:bean>		
+
+	<bean id="localDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass" ref="driverName" />
+		<property name="jdbcUrl" ref="jdbcURL" />
+		<property name="user" ref="userName" />
+		<property name="password" ref="password" />
+
+		<property name="minPoolSize" value="5" />
+		<property name="maxPoolSize" value="20" />
+		<property name="maxStatements" value="5" />
+	</bean>	
+
+	<bean id="jdbcURL"
+		class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetObject">
+			<bean class="com.clinic.web.util.DatabaseUtil" />
+		</property>
+		<property name="targetMethod">
+			<value>getJdbcUrl2</value>
+		</property>
+	</bean>
+
+	<bean id="userName"
+		class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetObject">
+			<bean class="com.clinic.web.util.DatabaseUtil" />
+		</property>
+		<property name="targetMethod">
+			<value>getUserName2</value>
+		</property>
+	</bean>
+
+	<bean id="password"
+		class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetObject">
+			<bean class="com.clinic.web.util.DatabaseUtil" />
+		</property>
+		<property name="targetMethod">
+			<value>getPassword2</value>
+		</property>
+	</bean>
+
+	<bean id="customersDao" class="com.clinic.web.dao.CustomersDaoImpl"
+		p:sessionFactory-ref="sessionFactory" />
+
+	<bean id="symptomDao" class="com.clinic.web.dao.SymptomDaoImpl"
+		p:sessionFactory-ref="sessionFactory" />
+
+	<bean id="casesDao" class="com.clinic.web.dao.CasesDaoImpl"
+		p:sessionFactory-ref="sessionFactory" />
+
+	<bean id="casesViewDao" class="com.clinic.web.dao.CasesViewDaoImpl"
+		p:sessionFactory-ref="sessionFactory" />
+
+	<bean id="medicineDao" class="com.clinic.web.dao.MedicineDaoImpl"
+		p:sessionFactory-ref="sessionFactory" />
+
+	<bean id="priceDao" class="com.clinic.web.dao.PriceDaoImpl"
+		p:sessionFactory-ref="sessionFactory" />
+		
+	<bean id="statisticDao" class="com.clinic.web.dao.StatisticDaoImpl"
+		p:sessionFactory-ref="sessionFactory" />
+
+	<bean id="caseRemark" class="com.clinic.web.dao.CaseRemarkDaoImpl"
+		p:sessionFactory-ref="sessionFactory" />
+		
+	<bean id="caseAttachment" class="com.clinic.web.dao.CaseAttachmentDaoImpl"
+		p:sessionFactory-ref="sessionFactory" />
+		
+	<bean id="userDao" class="com.clinic.web.dao.UserDaoImpl"
+		p:sessionFactory-ref="sessionFactory" />		
+
+	<bean id="customerFormValidator" class="com.clinic.web.validator.CustomerFormValidator">
+	</bean>
+
+	<bean id="customerCriteriaValidator" class="com.clinic.web.validator.CustomerCriteriaValidator">
+	</bean>
+
+	<bean id="caseCriteriaValidator" class="com.clinic.web.validator.CaseCriteriaValidator">
+	</bean>
+	
+	<bean id="reportCaseCriteriaValidator" class="com.clinic.web.validator.ReportCaseCriteriaValidator">
+	</bean>	
+	
+	<bean id="caseFormValidator" class="com.clinic.web.validator.CaseFormValidator">
+	</bean>
+	
+	<bean id="selectMedicineFormValidator" class="com.clinic.web.validator.SelectMedicineFormValidator">
+	</bean>
+	
+	<bean id="selectStatisticFormValidator" class="com.clinic.web.validator.SelectStatisticFormValidator">
+	</bean>
+	
+	<bean id="medicineFormValidator" class="com.clinic.web.validator.MedicineFormValidator">
+	</bean>
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basename" value="classpath:messages" />
+		<property name="defaultEncoding" value="UTF-8" />
+	</bean>
+
+	<!-- Transaction Manager -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager"
+		p:sessionFactory-ref="sessionFactory" />
+
+	<!-- for caching -->
+	<cache:annotation-driven />
+
+	<bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
+		<property name="caches">
+			<set>
+				<bean
+					class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+					p:name="symptomList" />
+				<bean
+					class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+					p:name="priceList" />
+				<bean
+					class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+					p:name="weightList" />
+				<bean
+					class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+					p:name="unitList" />
+				<bean
+					class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+					p:name="parentSymptom" />					
+			</set>
+		</property>
+	</bean>
+	
+	<!-- for file upload -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		 <!-- setting maximum upload size -->
+		<beans:property name="maxUploadSize" value="500000" />
+	</bean>	
+	<bean id="filterMultipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		 <!-- setting maximum upload size -->
+		<beans:property name="maxUploadSize" value="500000" />
+	</bean>	
+	
+	<!-- custom bean -->
+    <bean id="reportLocation" class="java.lang.String" factory-method="valueOf">
+		<constructor-arg value="C:/clinic" />
+	</bean>
+	
+	<!-- custom bean -->
+    <bean id="defaultDownloadLocation" class="java.lang.String" factory-method="valueOf">
+		<constructor-arg value="C:/clinic/case" />
+	</bean>	
+</beans>

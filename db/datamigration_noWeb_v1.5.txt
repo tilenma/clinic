@@ -1,0 +1,9 @@
+--Drop Database Clinic3
+
+--Backup
+“C:\program files\postgreSQL\9.4\bin\pg_dump.exe" -U postgres Clinic > C:\backup\clinic20181108
+
+--Create Database Clinic3
+
+--Restore
+"C:\program files\postgreSQL\9.4\bin\psql.exe" -U postgres --set ON_ERROR_STOP=on Clinic3 < "C:\backup\clinic20181108"

@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="receipt_A5" pageWidth="595" pageHeight="420" orientation="Landscape" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="698c9d08-96b7-4a8f-a0cd-b3c97f335cf7">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<parameter name="doctor" class="java.lang.String"/>
+	<parameter name="registerNo" class="java.lang.String"/>
+	<parameter name="customerName" class="java.lang.String"/>
+	<parameter name="sickness" class="java.lang.String"/>
+	<parameter name="price" class="java.math.BigDecimal"/>
+	<parameter name="dosage" class="java.lang.Integer"/>
+	<parameter name="dosageRemark" class="java.lang.String"/>
+	<parameter name="dosageMethod" class="java.lang.String"/>
+	<parameter name="dosageRecomment" class="java.lang.String"/>
+	<parameter name="redispense" class="java.lang.Integer"/>
+	<parameter name="expiryDate" class="java.util.Date"/>
+	<parameter name="receiptRemark" class="java.lang.String"/>
+	<parameter name="followupRemark" class="java.lang.String"/>
+	<parameter name="certRemark" class="java.lang.String"/>
+	<parameter name="reportRemark" class="java.lang.String"/>
+	<parameter name="date" class="java.util.Date"/>
+	<parameter name="issueDate" class="java.util.Date"/>
+	<queryString language="SQL">
+		<![CDATA[select A."caseID",B."customerID", B."name" as "customerName",
+A.date, A.diagnosis, A.sickness, A.dosage, A.price
+, A."dosageRemark", A."dosageMethod", A."dosageRecomment", A.redispense
+, A."expirydate", A."receiptRemark", A."followupRemark", A."certRemark"
+, A."reportRemark"
+from "Cases" A,"Customers" B 
+where A."customerID" = B."customerID" and "caseID" = 10;]]>
+	</queryString>
+	<field name="caseID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="caseID"/>
+	</field>
+	<field name="customerID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="customerID"/>
+	</field>
+	<field name="customerName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="customerName"/>
+	</field>
+	<field name="date" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="date"/>
+	</field>
+	<field name="diagnosis" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="diagnosis"/>
+	</field>
+	<field name="sickness" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="sickness"/>
+	</field>
+	<field name="dosage" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="dosage"/>
+	</field>
+	<field name="price" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="price"/>
+	</field>
+	<field name="dosageRemark" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="dosageRemark"/>
+	</field>
+	<field name="dosageMethod" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="dosageMethod"/>
+	</field>
+	<field name="dosageRecomment" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="dosageRecomment"/>
+	</field>
+	<field name="redispense" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="redispense"/>
+	</field>
+	<field name="expirydate" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="expirydate"/>
+	</field>
+	<field name="receiptRemark" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="receiptRemark"/>
+	</field>
+	<field name="followupRemark" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="followupRemark"/>
+	</field>
+	<field name="certRemark" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="certRemark"/>
+	</field>
+	<field name="reportRemark" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="reportRemark"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="300" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="61" width="555" height="20" uuid="81e6a8c4-32f7-466f-a5d6-2b09b2d5faaf"/>
+				<textElement textAlignment="Center">
+					<font fontName="MingLiU" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[到診紙]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="81" width="60" height="20" uuid="bab00e20-38c3-4353-bb25-9bc5419ecebc"/>
+				<textElement>
+					<font fontName="MingLiU" size="12"/>
+				</textElement>
+				<text><![CDATA[茲證明]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="60" y="81" width="50" height="20" uuid="ad3c305a-982e-46eb-b5bd-804b4fd3ee17"/>
+				<textElement>
+					<font fontName="MingLiU" size="12" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{customerName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="240" y="81" width="315" height="20" uuid="3212cfb2-cefb-4bf9-811b-812f55a52bbc"/>
+				<textElement>
+					<font fontName="MingLiU" size="12"/>
+				</textElement>
+				<text><![CDATA[在本診所接受診治。
+]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="130" y="81" width="110" height="20" uuid="6e7250d4-bf38-4dac-bfa9-8cee46877477"/>
+				<textElement>
+					<font fontName="MingLiU" size="12" isUnderline="true"/>
+					<paragraph lineSpacing="Double"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy a").format($P{date})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="101" width="60" height="20" uuid="be5aa22b-0c90-4a8a-b870-b1b8fe81855a"/>
+				<textElement>
+					<font fontName="MingLiU" size="12"/>
+				</textElement>
+				<text><![CDATA[診斷為]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="60" y="101" width="140" height="20" uuid="d0794e27-79a7-4fc7-846a-802534491640"/>
+				<textElement>
+					<font fontName="MingLiU" size="12" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{sickness}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="151" width="30" height="20" uuid="c11ae4c9-ae30-4f1b-909b-3b569dfe8fe9"/>
+				<textElement>
+					<font fontName="MingLiU" size="12"/>
+				</textElement>
+				<text><![CDATA[備註:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="30" y="151" width="525" height="20" uuid="92ac61bc-0bd4-4327-b39f-cfe7786aef1b"/>
+				<textElement>
+					<font fontName="MingLiU" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{followupRemark}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="110" y="81" width="20" height="20" uuid="94b378d9-344c-4d54-ba45-8831cff99aae"/>
+				<textElement>
+					<font fontName="MingLiU" size="12"/>
+				</textElement>
+				<text><![CDATA[於]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="101" width="110" height="20" uuid="fa880671-03e0-49f1-b7f4-954370434469"/>
+				<textElement>
+					<font fontName="MingLiU" size="12"/>
+				</textElement>
+				<text><![CDATA[。]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="361" y="172" width="73" height="20" uuid="d93ec697-0f37-425a-8dd7-4192dbf68391"/>
+				<textElement textAlignment="Left">
+					<font fontName="MingLiU" size="12"/>
+				</textElement>
+				<text><![CDATA[註冊中醫:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="434" y="172" width="120" height="20" uuid="5165af33-8b69-4040-97a6-8b716f32b3f0"/>
+				<textElement>
+					<font fontName="MingLiU" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{doctor}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="434" y="192" width="120" height="20" uuid="d1e3c5c2-59b5-41af-a261-259e7ac101a3"/>
+				<textElement>
+					<font fontName="MingLiU" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{registerNo}+")"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="361" y="192" width="73" height="20" uuid="cb334bd8-7c01-41ef-a12d-8505f08a1266"/>
+				<textElement textAlignment="Left">
+					<font fontName="MingLiU" size="12"/>
+				</textElement>
+				<text><![CDATA[(註冊編號:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="360" y="231" width="74" height="20" uuid="177b2502-e845-4b46-b455-1fe863e580bb"/>
+				<textElement textAlignment="Left">
+					<font fontName="MingLiU" size="12"/>
+				</textElement>
+				<text><![CDATA[簽署:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="360" y="256" width="74" height="20" uuid="9f4e043b-0964-40f7-ab69-1517c105a374"/>
+				<textElement textAlignment="Left">
+					<font fontName="MingLiU" size="12"/>
+				</textElement>
+				<text><![CDATA[簽發日期:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="434" y="256" width="120" height="20" uuid="236fbde1-0c87-4e4b-9611-e2058576e466"/>
+				<textElement>
+					<font fontName="MingLiU" size="12" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy").format($P{issueDate})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="434" y="236" width="77" height="20" uuid="881563c8-2fe6-4be4-ac6a-fb772c02e660"/>
+				<textElement>
+					<font fontName="MingLiU" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["_________________________"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="110" y="1" width="334" height="30" uuid="76d11731-578b-4b3a-a8fc-a942c5c9e8c6"/>
+				<textElement textAlignment="Center">
+					<font fontName="MingLiU" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[健至(全科)註冊中醫診所]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="31" width="444" height="30" uuid="18d27d7e-3116-43fd-b204-f908a77d2836"/>
+				<textElement>
+					<font fontName="MingLiU" size="12"/>
+				</textElement>
+				<text><![CDATA[地址: 香港天后電氣道60號美景樓閣樓
+電話: 34831155 59706565 ]]></text>
+			</staticText>
+			<image>
+				<reportElement x="444" y="1" width="110" height="61" uuid="68c35215-d3bc-4171-b4be-b3729112ec80"/>
+				<imageExpression><![CDATA["report/logo.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+</jasperReport>
